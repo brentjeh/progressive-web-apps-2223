@@ -36,7 +36,7 @@ Daarna ben ik Express, EJS en nodemon gaan installeren met de volgende command:
 ```
 npm install express nodemon ejs
 ```
-Vervolgens heb ik een nieuw index.js bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet:
+Vervolgens heb ik een nieuw index.js bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet. Deze code maakt een server aan met Express en luistert naar poort 3000. Het maakt gebruik van de express.static middleware om statische bestanden te serveren, zoals CSS-, JavaScript- en afbeeldingsbestanden. De views map wordt ingesteld als de map voor de EJS-weergaven. Wanneer een verzoek naar de hoofdroute ("/") wordt ontvangen, wordt het bestand "index.ejs" gerenderd en als respons teruggestuurd naar de client.
 ```js
 // De benodigde modules requiren
 const express = require('express');
