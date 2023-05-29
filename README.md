@@ -6,8 +6,8 @@
 - [Installeren van de server-side Web App](#installatie)
 - [Week 1](#week1)
     - [Het refactoren van de WAfS applicatie](#refactoren)
-    - [Tooling]
-    - [Mappenstructuur]
+    - [Tooling](#tooling)
+    - [Mappenstructuur](#mappenstructuur)
 - [Week 2](#week2)
 
 ## Introductie 
