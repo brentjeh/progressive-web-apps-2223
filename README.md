@@ -36,7 +36,31 @@ Daarna ben ik Express, EJS en nodemon gaan installeren met de volgende command:
 ```
 npm install express nodemon ejs
 ```
+Vervolgens heb ik een nieuw index.js bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet:
+```js
+const express = require('express');
+const app = express();
+const port = 3000;
 
+// Naar port luisteren
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });
+
+// Static files
+app.use(express.static('public'))
+app.use('/css', express.static(__dirname + '/public/css'))
+app.use('/js', express.static(__dirname + '/public/js'))
+app.use('/img', express.static(__dirname + '/public/img'))
+
+// Set Views
+app.set('views', './views')
+app.set('view engine', 'ejs')
+
+app.get('/', (req, res) => {
+    res.render('index');
+  });
+```
 
 Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
 ```bash
