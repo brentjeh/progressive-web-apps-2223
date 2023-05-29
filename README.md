@@ -3,7 +3,7 @@
 ## Inleiding
 - [Introductie](#introductie)
 - [De Web App from Scratch Applicatie](#wafs-app)
-- [Week 1](#week 1)
+- [Week 1](#week1)
 
 ## Introductie 
 Welkom bij dit project waarin ik je meeneem in het proces van het omzetten van een client-side webapplicatie naar een server-side gerenderde applicatie. Gedurende dit vak, gebaseerd op de "Web App From Scratch" applicatie, zal ik de functionaliteiten van de applicatie uitbreiden en optimalisaties doorvoeren om de prestaties te verbeteren.
@@ -23,4 +23,4 @@ In deze applicatie kan de gebruiker kunstwerken bekijken en ontdekken vanuit de 
 
 Met deze functionaliteiten kan de gebruiker door de kunstcollectie bladeren, kunstwerken vinden die de gebruiker aanspreken en meer te weten komen over de kunstenaars die ze hebben gemaakt.
 
-## Week 1
+## Week 1 <a name="week1"></a>
