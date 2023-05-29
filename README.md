@@ -28,7 +28,7 @@ Met deze functionaliteiten kan de gebruiker door de kunstcollectie bladeren, kun
 
 Installeer deze repository: 
 ```
-Git clone https://github.com/dennishva/progressive-web-apps-2223
+Git clone https://github.com/brentjeh/progressive-web-apps-2223
 ```
 
 Om Node modules te installeren:
