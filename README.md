@@ -26,7 +26,19 @@ Met deze functionaliteiten kan de gebruiker door de kunstcollectie bladeren, kun
 ## Week 1 <a name="week1"></a>
 
 ### Het refactoren van de WAfS applicatie
-Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, node.js, Express, EJS en nodemon. Ik heb de volgende mappenstructuur 
+Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, Node.js, Express, EJS en nodemon. Eerst heb ik een nieuw Node.js project aangemaakt door het volgende in te tikken in mijn terminal:
+```
+npm init
+```
+Dit heeft een nieuw package.json aangemaakt in mijn mappenstructuur.
+
+Daarna ben ik Express, EJS en nodemon gaan installeren met de volgende command:
+```
+npm install express nodemon ejs
+```
+
+
+Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
 ```bash
     ├── node_modules            # Een map met alle node modules
     ├── public                  # Een map met alle static files
