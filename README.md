@@ -28,13 +28,16 @@ Met deze functionaliteiten kan de gebruiker door de kunstcollectie bladeren, kun
 ### Het refactoren van de WAfS applicatie
 Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, node.js, Express, EJS en nodemon. Ik heb de volgende mappenstructuur 
 ```bash
-.
-    ├── ...
-    ├── test                    # Test files (alternatively `spec` or `tests`)
-    │   ├── benchmarks          # Load and stress tests
-    │   ├── integration         # End-to-end, integration tests (alternatively `e2e`)
-    │   └── unit                # Unit tests
-    └── ...
+    ├── node_modules            # Een map met alle node modules
+    ├── public                  # Een map met alle static files
+    │   ├── css                 
+    │   │   └── style.css       # Main CSS bestand voor alle styling
+    │   └──  js                  
+    │       └── main.js         # Main client-side JavaScript bestand
+    ├── views
+    │   └── index.ejs           # Main HTML bestand
+    ├── package-lock.json
+    └── package.json
 ```
 
 ## Week 2 <a name="week1"></a>
