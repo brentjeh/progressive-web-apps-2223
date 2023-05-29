@@ -69,8 +69,9 @@ Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
     ├── public                  # Een map met alle static files
     │   ├── css                 
     │   │   └── style.css       # Main CSS bestand voor alle styling
-    │   └──  js                  
-    │       └── main.js         # Main client-side JavaScript bestand
+    │   ├──  js                  
+    │   │   └── main.js         # Main client-side JavaScript bestand
+    │   └── img                 # Een map voor eventuele image bestanden
     ├── views
     │   └── index.ejs           # Main HTML bestand
     ├── package-lock.json
