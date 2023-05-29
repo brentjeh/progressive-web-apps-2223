@@ -9,7 +9,7 @@
     - [Tooling](#tooling)
     - [Mappenstructuur](#mappenstructuur)
 - [Week 2](#week2)
-    - [Het converteren van de WAfS applicatie](#converteren)
+    - [Het converteren van de WAfS applicatie naar een Progressive Web App](#converteren)
     - [Service Worker](#service-worker)
 
 ## Introductie 
@@ -111,6 +111,7 @@ Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
 
 ## Week 2 <a name="week2"></a>
 
-### Het converteren van de WAfS applicatie <a name="converteren"></a>
+### Het converteren van de WAfS applicatie naar een Progressive Web App <a name="converteren"></a>
+
 
 ### Service Worker <a name="service-worker"></a>
