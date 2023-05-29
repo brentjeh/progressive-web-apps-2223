@@ -2,7 +2,7 @@
 
 ## Inleiding
 - [Introductie](#introductie)
-- [De Web App from Scratch Applicatie](#wafs-app)
+- [De Web App from Scratch applicatie](#wafs-app)
 - [Installeren van de server-side Web App](#installatie)
 - [Week 1](#week1)
 
@@ -15,7 +15,7 @@ Tijdens de cursus zal ik stap voor stap de nodige wijzigingen en optimalisaties 
 
 Dit project biedt een geweldige kans om mijn vaardigheden als ontwikkelaar uit te breiden en te leren hoe ik een client-side webapplicatie kan transformeren naar een server-side gerenderde applicatie.
 
-## De Web App from Scratch Applicatie <a name="wafs-app"></a>
+## De Web App from Scratch applicatie <a name="wafs-app"></a>
 In deze applicatie kan de gebruiker kunstwerken bekijken en ontdekken vanuit de Rijksmuseum-collectie. Hier is een overzicht van de belangrijkste dingen die ik heb toegevoegd aan de applicatie:
 - Kunstwerken ophalen: Met behulp van de code haal ik kunstwerken op vanuit de Rijksmuseum API. De API bevat een enorme collectie kunstwerken van verschillende artiesten.
 - Kunstwerken weergeven: Nadat ik de kunstwerken heb opgehaald, worden ze op de webpagina weergegeven. Ik laat de afbeeldingen van de kunstwerken en de bijbehorende titels zien aan de gebruiker.
