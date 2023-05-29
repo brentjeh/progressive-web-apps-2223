@@ -83,6 +83,10 @@ app.get('/', (req, res) => {
 ```
 
 ### Tooling
+Ik heb als tool nodemon geinstalleerd. In mijn package.json bestand heb ik de volgende regel gezet.
+```json
+"start": "nodemon index.js"
+```
 
 ### Mappenstructuur
 Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
