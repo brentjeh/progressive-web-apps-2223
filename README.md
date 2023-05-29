@@ -38,6 +38,7 @@ npm install express nodemon ejs
 ```
 Vervolgens heb ik een nieuw index.js bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet:
 ```js
+// De benodigde modules requiren
 const express = require('express');
 const app = express();
 const port = 3000;
