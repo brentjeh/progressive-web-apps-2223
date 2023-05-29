@@ -82,7 +82,9 @@ app.get('/', (req, res) => {
   });
 ```
 
-#### Mappenstructuur
+### Tooling
+
+### Mappenstructuur
 Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
 ```bash
     ├── node_modules            # Een map met alle node modules
