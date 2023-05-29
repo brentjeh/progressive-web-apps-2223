@@ -1,6 +1,9 @@
 # Progressive Web Apps @cmda-minor-web 2022 - 2023
 
-## Introductie
+## Inleiding
+- [Introductie](#introductie)
+
+## Introductie 
 Welkom bij dit project waarin ik je meeneem in het proces van het omzetten van een client-side webapplicatie naar een server-side gerenderde applicatie. Gedurende dit vak, gebaseerd op de "Web App From Scratch" applicatie, zal ik de functionaliteiten van de applicatie uitbreiden en optimalisaties doorvoeren om de prestaties te verbeteren.
 
 Mijn doel is om de oorspronkelijke client-side webapplicatie om te zetten naar een server-side variant. Hierdoor kan ik de verwerking en logica van de applicatie naar de server verplaatsen, wat voordelen biedt op het gebied van schaalbaarheid, beveiliging en gegevensbeheer. Daarnaast zal ik gebruikmaken van de Service Worker om nieuwe functionaliteiten toe te voegen aan de applicatie en deze om te vormen tot een Progressive Web App.
