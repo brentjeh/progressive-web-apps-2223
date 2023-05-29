@@ -5,6 +5,9 @@
 - [De Web App from Scratch applicatie](#wafs-app)
 - [Installeren van de server-side Web App](#installatie)
 - [Week 1](#week1)
+    - [Het refactoren van de WAfS applicatie](#refactoren)
+    - [Tooling]
+    - [Mappenstructuur]
 - [Week 2](#week2)
 
 ## Introductie 
@@ -44,7 +47,7 @@ npm start
 
 ## Week 1 <a name="week1"></a>
 
-### Het refactoren van de WAfS applicatie
+### Het refactoren van de WAfS applicatie <a name="refactoren"></a>
 Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, Node.js, Express, EJS en nodemon. Eerst heb ik een nieuw Node.js project aangemaakt door het volgende in te tikken in mijn terminal:
 ```
 npm init
