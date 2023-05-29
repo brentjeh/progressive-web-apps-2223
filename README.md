@@ -2,7 +2,7 @@
 
 ## Inleiding
 - [Introductie](#introductie)
-- [De Web App from Scratch applicatie](#wafs-app)
+- [De Web App from Scratch applicatie](##De Web App from Scratch applicatie)
 - [Installeren van de server-side Web App](#installatie)
 - [Week 1](#week1)
     - [Het refactoren van de WAfS applicatie](#refactoren)
