@@ -2,7 +2,7 @@
 
 ## Inleiding
 - [Introductie](#introductie)
-- [De Web App From Scratch Applicatie](#De Web App From Scratch Applicatie)
+- [De Web App From Scratch Applicatie](#wafs-app)
 
 ## Introductie 
 Welkom bij dit project waarin ik je meeneem in het proces van het omzetten van een client-side webapplicatie naar een server-side gerenderde applicatie. Gedurende dit vak, gebaseerd op de "Web App From Scratch" applicatie, zal ik de functionaliteiten van de applicatie uitbreiden en optimalisaties doorvoeren om de prestaties te verbeteren.
@@ -13,4 +13,4 @@ Tijdens de cursus zal ik stap voor stap de nodige wijzigingen en optimalisaties 
 
 Dit project biedt een geweldige kans om mijn vaardigheden als ontwikkelaar uit te breiden en te leren hoe ik een client-side webapplicatie kan transformeren naar een server-side gerenderde applicatie.
 
-## De Web App From Scratch Applicatie
+## De Web App From Scratch Applicatie <a name="wafs-app"></a>
