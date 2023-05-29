@@ -9,6 +9,8 @@
     - [Tooling](#tooling)
     - [Mappenstructuur](#mappenstructuur)
 - [Week 2](#week2)
+    - [Het converteren van de WAfS applicatie](#converteren)
+    - [Service Worker](#service-worker)
 
 ## Introductie 
 Welkom bij dit project waarin ik je meeneem in het proces van het omzetten van een client-side webapplicatie naar een server-side gerenderde applicatie. Gedurende dit vak, gebaseerd op de "Web App From Scratch" applicatie, zal ik de functionaliteiten van de applicatie uitbreiden en optimalisaties doorvoeren om de prestaties te verbeteren.
@@ -108,3 +110,7 @@ Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
 ```
 
 ## Week 2 <a name="week2"></a>
+
+### Het converteren van de WAfS applicatie <a name="converteren"></a>
+
+### Service Worker <a name="service-worker"></a>
