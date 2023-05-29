@@ -27,7 +27,7 @@ Met deze functionaliteiten kan de gebruiker door de kunstcollectie bladeren, kun
 
 ### Het refactoren van de WAfS applicatie
 Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, node.js, Express, EJS en nodemon. Ik heb de volgende mappenstructuur 
-
+```bash
 .
     ├── ...
     ├── test                    # Test files (alternatively `spec` or `tests`)
@@ -35,5 +35,6 @@ Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, node.js, Express, EJ
     │   ├── integration         # End-to-end, integration tests (alternatively `e2e`)
     │   └── unit                # Unit tests
     └── ...
+```
 
 ## Week 2 <a name="week1"></a>
