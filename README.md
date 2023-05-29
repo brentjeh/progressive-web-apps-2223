@@ -5,6 +5,7 @@
 - [De Web App from Scratch applicatie](#wafs-app)
 - [Installeren van de server-side Web App](#installatie)
 - [Week 1](#week1)
+- [Week 2](#week2)
 
 ## Introductie 
 Welkom bij dit project waarin ik je meeneem in het proces van het omzetten van een client-side webapplicatie naar een server-side gerenderde applicatie. Gedurende dit vak, gebaseerd op de "Web App From Scratch" applicatie, zal ik de functionaliteiten van de applicatie uitbreiden en optimalisaties doorvoeren om de prestaties te verbeteren.
@@ -97,4 +98,4 @@ Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
     └── package.json
 ```
 
-## Week 2 <a name="week1"></a>
+## Week 2 <a name="week2"></a>
