@@ -3,6 +3,7 @@
 ## Inleiding
 - [Introductie](#introductie)
 - [De Web App from Scratch Applicatie](#wafs-app)
+- [Installeren van de server-side Web App](#installatie)
 - [Week 1](#week1)
 
 ## Introductie 
@@ -22,6 +23,23 @@ In deze applicatie kan de gebruiker kunstwerken bekijken en ontdekken vanuit de 
 - Pop-upvenster met details: Wanneer de gebruiker op een kunstwerk klik, opent er een pop-upvenster met meer details over dat specifieke kunstwerk. De gebruiker ziet een grotere afbeelding van het kunstwerk, de titel en informatie over de kunstenaar.
 
 Met deze functionaliteiten kan de gebruiker door de kunstcollectie bladeren, kunstwerken vinden die de gebruiker aanspreken en meer te weten komen over de kunstenaars die ze hebben gemaakt.
+
+## Installeren van de server-side Web App <a name="installatie"></a>
+
+Installeer deze repository: 
+```
+Git clone https://github.com/dennishva/progressive-web-apps-2223
+```
+
+Om Node modules te installeren:
+```
+npm install
+```
+
+Om de applicatie te starten:
+```
+npm start
+```
 
 ## Week 1 <a name="week1"></a>
 
