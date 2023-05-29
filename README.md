@@ -83,7 +83,7 @@ app.get('/', (req, res) => {
 ```
 
 ### Tooling
-Ik heb als tool nodemon geinstalleerd. In mijn package.json bestand heb ik de volgende regel gezet.
+Ik heb als tool nodemon geinstalleerd. Nodemon is een handige tool die je helpt bij het ontwikkelen van Node.js-applicaties. Het zorgt ervoor dat je server automatisch opnieuw wordt gestart telkens wanneer je wijzigingen aanbrengt in je code. Normaal gesproken zou je de server handmatig moeten stoppen en opnieuw starten, maar nodemon neemt dat werk voor je uit handen. In mijn package.json bestand heb ik de volgende regel gezet:
 ```json
 "start": "nodemon index.js"
 ```
