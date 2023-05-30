@@ -112,6 +112,23 @@ Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
 ## Week 2 <a name="week2"></a>
 
 ### Het converteren van de WAfS applicatie naar een Progressive Web App <a name="converteren"></a>
-
+Om dit te doen heb ik een manifest.json bestand toegevoegd aan mijn project. Dit bestand bevat de volgende code:
+```json
+{
+    "name": "Rijksmuseum Database",
+    "short_name": "Rijksmuseum Database",
+    "description": "Een database waarin je elk schilderij uit het Rijksmuseum in detail kan bekijken en opzoeken.",
+    "start_url": "http://localhost:3000/",
+    "icons": [
+      {
+        "src": "public/img/cat.jpg",
+        "sizes": "192x192",
+        "type": "image/jpeg"
+      }
+    ],
+    "display": "standalone"
+  }
+  
+```
 
 ### Service Worker <a name="service-worker"></a>
