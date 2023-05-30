@@ -105,8 +105,11 @@ Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
     │   └── img                 # Een map voor eventuele image bestanden
     ├── views
     │   └── index.ejs           # Main HTML bestand
+    ├── index.js
+    ├── manifest.json
     ├── package-lock.json
-    └── package.json
+    ├── package.json
+    └── service-worker.js       # Service Worker bestand
 ```
 
 ## Week 2 <a name="week2"></a>
