@@ -128,7 +128,6 @@ Om dit te doen heb ik een manifest.json bestand toegevoegd aan mijn project. Dit
     ],
     "display": "standalone"
   }
-  
 ```
 
 ### Service Worker <a name="service-worker"></a>
