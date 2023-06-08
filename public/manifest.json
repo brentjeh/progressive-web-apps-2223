@@ -1,0 +1,16 @@
+{
+    "name": "Rijksmuseum Data",
+    "short_name": "Rijksmuseum Data",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "Scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+        "src": "/images/icons/icon.png",
+        "sizes": "144x144",
+        "type": "image/png"
+        }
+    ]
+}
