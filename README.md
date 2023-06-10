@@ -44,13 +44,13 @@ npm install
 
 Om de applicatie te starten:
 ```
-npm start
+npm run dev
 ```
 
 ## Week 1 <a name="week1"></a>
 
 ### Het refactoren van de WAfS applicatie <a name="refactoren"></a>
-Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, Node.js, Express, EJS en nodemon. Eerst heb ik een nieuw Node.js project aangemaakt door het volgende in te tikken in mijn terminal:
+Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, Node.js, node-fetch, Express, EJS, nodemon en Gulp. Eerst heb ik een nieuw Node.js project aangemaakt door het volgende in te tikken in mijn terminal:
 ```
 npm init
 ```
@@ -58,33 +58,57 @@ Dit heeft een nieuw package.json aangemaakt in mijn mappenstructuur.
 
 Daarna ben ik Express, EJS en nodemon gaan installeren met de volgende command:
 ```
-npm install express nodemon ejs
+npm install express nodemon ejs node-fetch compression
 ```
-Vervolgens heb ik een nieuw index.js bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet. Deze code maakt een server aan met Express en luistert naar poort 3000. Het maakt gebruik van de express.static middleware om statische bestanden te serveren, zoals CSS-, JavaScript- en afbeeldingsbestanden. De views map wordt ingesteld als de map voor de EJS-weergaven. Wanneer een verzoek naar de hoofdroute ("/") wordt ontvangen, wordt het bestand "index.ejs" gerenderd en als respons teruggestuurd naar de client.
+Vervolgens heb ik een nieuw index.mjs bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet. Deze code importeert de vereiste modules ('compression' wordt gebruikt om compressie van HTTP-responsen in te schakelen, 'express' wordt gebruik als webframework voor het bouwen van de server, 'fetch' wordt geïmporteerd vanuit de node-fetch-bibliotheek om HTTP-verzoeken naar externe API's te maken, path en fileURLToPath worden gebruikt om het huidige bestandssysteempad op te halen). De code initialiseert Express en schakelt compressie in ('app = express()' maakt een Express-applicatie-instantie, 'app.use(compression())' registreert de compressiemiddleware, zodat de server de responsen kan comprimeren voordat ze naar de client worden verzonden). De code stelt statische bestandroutes in (app.use(express.static(path.join(__dirname, 'public'))) definieert een route voor statische bestanden, waarbij de map 'public' wordt geserveerd als de rootmap voor statische bestanden (bijvoorbeeld CSS, JavaScript-bestanden).)
 ```js
-// De benodigde modules requiren
-const express = require('express');
+import compression from 'compression';
+import express from 'express';
 const app = express();
-const port = 3000;
+app.use(compression());
 
-// Naar port luisteren
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
-  });
+import fetch from 'node-fetch';
 
-// Statische files opzetten
-app.use(express.static('public'))
-app.use('/css', express.static(__dirname + '/public/css'))
-app.use('/js', express.static(__dirname + '/public/js'))
-app.use('/img', express.static(__dirname + '/public/img'))
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Set views
-app.set('views', './views')
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 app.get('/', (req, res) => {
-    res.render('index');
-  });
+    fetch("https://www.rijksmuseum.nl/api/en/collection?key=RCZaMbZZ&format=json&type=painting&ps=48")
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            res.set('Cache-control', 'public, max-age=31536000')
+            res.render('index', {
+                data: data
+            });
+        })
+});
+
+app.get('/search', (req, res) => {
+    fetch(`https://www.rijksmuseum.nl/api/en/collection?key=RCZaMbZZ&q=${req.query.query}&format=json&type=painting&ps=48`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            res.set('Cache-control', 'public, max-age=31536000')
+            res.render('index', {
+                data: data
+            });
+        })
+});
+
+app.get('/offline', (req, res) => {
+    res.render('offline');
+});
+
+app.listen(1000);
 ```
 
 ### Tooling
