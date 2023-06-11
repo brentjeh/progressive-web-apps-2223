@@ -1,6 +1,6 @@
 # Progressive Web Apps @cmda-minor-web 2022 - 2023
 
-## Inleiding
+## Inhoudsopgave
 - [Introductie](#introductie)
 - [De Web App from Scratch applicatie](#wafs-app)
 - [Installeren van de server-side Web App](#installatie)
