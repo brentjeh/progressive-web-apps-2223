@@ -8,7 +8,7 @@
     - [Het refactoren van de WAfS applicatie](#refactoren)
     - [Tooling](#tooling)
     - [Mappenstructuur](#mappenstructuur)
-    - [Views directory aanmaken](#views)
+    - [Views en Public directory aanmaken](#views)
 - [Week 2](#week2)
     - [Het converteren van de WAfS applicatie naar een Progressive Web App](#converteren)
     - [Service Worker](#service-worker)
@@ -131,6 +131,18 @@ Dit is hoe de structuur van mijn views directory eruit ziet:
         │   └── popup.ejs       # Pop-up (Handelt pop-up logica af)        
         ├── index.ejs           # Main HTML bestand
         └── offline.ejs         # Deze pagina wordt weergeven zodra de gebruiker offline is.
+```
+
+Dit is hoe de structuur van mijn public directory eruit ziet:
+```bash
+    └── public                  # Een map met alle static files
+        ├── css                 
+        │   └── index.css       # Main CSS bestand voor alle styling
+        ├──  js  
+        │   ├── index-min.js    # Een geminimaliseerde (gecomprimeerde) versie van de JavaScript-code voor mijn webapplicatie
+        │   └── main.js         # Main client-side JavaScript bestand
+        └── img                 # Een map voor eventuele image bestanden
+            └── icon.png        # Icoontje voor de geïnstalleerde versie van mijn webapplicatie
 ```
 
 ### Mappenstructuur
