@@ -148,25 +148,6 @@ Dit is hoe de structuur van mijn public directory eruit ziet:
             └── icon.png        # Icoontje voor de geïnstalleerde versie van mijn webapplicatie
 ```
 
-### Mappenstructuur
-Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
-```bash
-    ├── node_modules            # Een map met alle node modules
-    ├── public                  # Een map met alle static files
-    │   ├── css                 
-    │   │   └── style.css       # Main CSS bestand voor alle styling
-    │   ├──  js                  
-    │   │   └── main.js         # Main client-side JavaScript bestand
-    │   └── img                 # Een map voor eventuele image bestanden
-    ├── views
-    │   └── index.ejs           # Main HTML bestand
-    ├── index.js
-    ├── manifest.json
-    ├── package-lock.json
-    ├── package.json
-    └── service-worker.js       # Service Worker bestand
-```
-
 ## Week 2 <a name="week2"></a>
 
 ### Het converteren van de WAfS applicatie naar een Progressive Web App <a name="converteren"></a>
@@ -195,3 +176,22 @@ Om dit te doen heb ik een manifest.json bestand toegevoegd aan mijn project. Dit
 ### Optimaliseren van de performance <a name="optimaliseren"></a>
 
 ### De app installeren <a name="installeren"></a>
+
+### Mappenstructuur
+Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
+```bash
+    ├── node_modules            # Een map met alle node modules
+    ├── public                  # Een map met alle static files
+    │   ├── css                 
+    │   │   └── style.css       # Main CSS bestand voor alle styling
+    │   ├──  js                  
+    │   │   └── main.js         # Main client-side JavaScript bestand
+    │   └── img                 # Een map voor eventuele image bestanden
+    ├── views
+    │   └── index.ejs           # Main HTML bestand
+    ├── index.js
+    ├── manifest.json
+    ├── package-lock.json
+    ├── package.json
+    └── service-worker.js       # Service Worker bestand
+```
