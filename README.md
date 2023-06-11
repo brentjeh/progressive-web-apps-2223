@@ -125,7 +125,9 @@ Dit is hoe de structuur van mijn views directory eruit ziet:
 ```bash
     └── views
         ├── partials 
-            ├── footer.ejs      # Footer. De eerste script tag in dit bestand controleert of de browser Service Worker functionaliteit ondersteunt. Als dat het geval is, wordt er een event listener toegevoegd aan het 'load'-evenement van het venster. Wanneer de webpagina is geladen wordt er een Service Worker geregistreerd, aan de hand van het 'service-worker.js' bestand.
+            ├── footer.ejs      # Footer
+            ├── head.ejs        # Head
+            ├── headerjs        # Head
             ├── head.ejs        # Head
         │   └──     
         ├── index.ejs           # Main HTML bestand
