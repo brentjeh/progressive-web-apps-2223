@@ -64,7 +64,7 @@ Daarna ben ik Express, EJS en nodemon gaan installeren met de volgende command:
 ```
 npm install express nodemon ejs node-fetch compression
 ```
-Vervolgens heb ik een nieuw index.mjs bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet. Deze code importeert de vereiste modules ('compression' wordt gebruikt om compressie van HTTP-responsen in te schakelen, 'express' wordt gebruik als webframework voor het bouwen van de server, 'fetch' wordt geïmporteerd vanuit de node-fetch-bibliotheek om HTTP-verzoeken naar externe API's te maken, path en fileURLToPath worden gebruikt om het huidige bestandssysteempad op te halen). De code initialiseert Express en schakelt compressie in ('app = express()' maakt een Express-applicatie-instantie, 'app.use(compression())' registreert de compressiemiddleware, zodat de server de responsen kan comprimeren voordat ze naar de client worden verzonden). De code stelt statische bestandroutes in ('app.use(express.static(path.join(__dirname, 'public')))' definieert een route voor statische bestanden, waarbij de map 'public' wordt geserveerd als de rootmap voor statische bestanden (bijvoorbeeld CSS, JavaScript-bestanden)). De code configureert de view-engine en weergavepaden ('app.set('view engine', 'ejs')' stelt de weergavemotor in op EJS (Embedded JavaScript), waarmee dynamische HTML-templates kunnen worden gerenderd, 'app.set('views', 'views')' stelt het pad in naar de map waarin de weergavetemplates worden opgeslagen (in dit geval is het 'views')). De code definieert routes en maak HTTP-verzoeken naar de Rijksmuseum API ('app.get('/')' definieert de hoofdroute ('/') waarbij een HTTP GET-verzoek naar de Rijksmuseum API wordt gedaan om een lijst met schilderijen op te halen. De ontvangen gegevens worden vervolgens gerenderd met behulp van het 'index' weergavetemplate, 'app.get('/search')' definieert een route voor het zoeken naar schilderijen op basis van een zoekopdracht. Het maakt een HTTP GET-verzoek naar de Rijksmuseum API met de zoekopdracht en rendert de ontvangen gegevens met behulp van het 'index' weergavetemplate, 'app.get('/offline')' definieert een route voor een offlinepagina die kan worden weergegeven wanneer de server niet beschikbaar is). Als laatst start de code de server ('app.listen(1000)' start de server op poort 1000. Dit betekent dat de server luistert naar inkomende verzoeken op poort 1000 van de lokale machine.
+Vervolgens heb ik een nieuw index.mjs bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet.
 ```js
 import compression from 'compression';
 import express from 'express';
@@ -114,6 +114,7 @@ app.get('/offline', (req, res) => {
 
 app.listen(1000);
 ```
+Deze code importeert de vereiste modules ('compression' wordt gebruikt om compressie van HTTP-responsen in te schakelen, 'express' wordt gebruik als webframework voor het bouwen van de server, 'fetch' wordt geïmporteerd vanuit de node-fetch-bibliotheek om HTTP-verzoeken naar externe API's te maken, path en fileURLToPath worden gebruikt om het huidige bestandssysteempad op te halen). De code initialiseert Express en schakelt compressie in ('app = express()' maakt een Express-applicatie-instantie, 'app.use(compression())' registreert de compressiemiddleware, zodat de server de responsen kan comprimeren voordat ze naar de client worden verzonden). De code stelt statische bestandroutes in ('app.use(express.static(path.join(__dirname, 'public')))' definieert een route voor statische bestanden, waarbij de map 'public' wordt geserveerd als de rootmap voor statische bestanden (bijvoorbeeld CSS, JavaScript-bestanden)). De code configureert de view-engine en weergavepaden ('app.set('view engine', 'ejs')' stelt de weergavemotor in op EJS (Embedded JavaScript), waarmee dynamische HTML-templates kunnen worden gerenderd, 'app.set('views', 'views')' stelt het pad in naar de map waarin de weergavetemplates worden opgeslagen (in dit geval is het 'views')). De code definieert routes en maak HTTP-verzoeken naar de Rijksmuseum API ('app.get('/')' definieert de hoofdroute ('/') waarbij een HTTP GET-verzoek naar de Rijksmuseum API wordt gedaan om een lijst met schilderijen op te halen. De ontvangen gegevens worden vervolgens gerenderd met behulp van het 'index' weergavetemplate, 'app.get('/search')' definieert een route voor het zoeken naar schilderijen op basis van een zoekopdracht. Het maakt een HTTP GET-verzoek naar de Rijksmuseum API met de zoekopdracht en rendert de ontvangen gegevens met behulp van het 'index' weergavetemplate, 'app.get('/offline')' definieert een route voor een offlinepagina die kan worden weergegeven wanneer de server niet beschikbaar is). Als laatst start de code de server ('app.listen(1000)' start de server op poort 1000. Dit betekent dat de server luistert naar inkomende verzoeken op poort 1000 van de lokale machine.
 
 ### Tooling
 Ik heb als tool nodemon geinstalleerd. Nodemon is een handige tool die je helpt bij het ontwikkelen van Node.js-applicaties. Het zorgt ervoor dat je server automatisch opnieuw wordt gestart telkens wanneer je wijzigingen aanbrengt in je code. Normaal gesproken zou je de server handmatig moeten stoppen en opnieuw starten, maar nodemon neemt dat werk voor je uit handen. In mijn package.json bestand heb ik de volgende regel gezet:
@@ -143,7 +144,7 @@ Dit is hoe de structuur van mijn public directory eruit ziet:
         │   └── index.css       # Main CSS bestand voor alle styling
         ├──  js  
         │   ├── index-min.js    # Een geminimaliseerde (gecomprimeerde) versie van de JavaScript-code voor mijn webapplicatie
-        │   └── index.js         # Main client-side JavaScript bestand
+        │   └── index.js        # Main client-side JavaScript bestand
         └── img                 # Een map voor eventuele image bestanden
             └── icon.png        # Icoontje voor de geïnstalleerde versie van mijn webapplicatie
 ```
@@ -168,8 +169,10 @@ Om dit te doen heb ik een manifest.json bestand toegevoegd aan mijn project. Dit
     "display": "standalone"
   }
 ```
+Een manifest.json-bestand is een JSON-bestand dat wordt gebruikt in progressive web apps om metadata en configuratiegegevens te definiëren. Het manifestbestand beschrijft essentiële informatie over de webapplicatie, zoals de naam, beschrijving, pictogrammen, kleurenthema, weergavemodus en andere eigenschappen.
 
 ### Service Worker <a name="service-worker"></a>
+Mijn service worker bestand (service-worker.js) bevat de logica voor het implementeren van caching en offline functionaliteit in mijn webapplicatie. 
 
 ## Week 3 <a name="week3"></a>
 
