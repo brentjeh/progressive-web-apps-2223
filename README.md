@@ -251,7 +251,7 @@ Als opdracht moest ik 2 of meer van de 5 performance componenten optimaliseren. 
 4. Visual stability
 5. Smoothness
 
-Ik ga per component langs hoe ik deze heb geoptimaliseerd aan de hand van Compression en Gulp.
+Ik ga per component langs hoe ik deze heb geoptimaliseerd aan de hand van Compression, Gulp en de Service Worker.
 
 #### 1. Perceived load speed
 Het gebruik van Gulp en het samenvoegen, minificeren en autoprefixen van CSS- en JavaScript-bestanden heeft bijgedragen aan het optimaliseren van de laadsnelheid van een webpagina. Door CSS en JavaScript te minimaliseren, worden bestandsgroottes verkleind, waardoor ze sneller kunnen worden gedownload en verwerkt. Het samenvoegen van bestanden vermindert ook het aantal verzoeken dat naar de server wordt gestuurd. Verder definieert de service worker een cache met de naam CORE_CACHE_NAME en slaat specifieke assets op in deze cache, zoals de /offline-pagina en /css/index.css. Wanneer een gebruiker de pagina bezoekt, kan de Service Worker deze assets uit de cache halen en onmiddellijk weergeven, zelfs als er geen netwerkverbinding is. Dit draagt bij aan de waargenomen laadsnelheid van de pagina, omdat de essentiële inhoud direct beschikbaar is zonder te hoeven wachten op een netwerkreactie. 
