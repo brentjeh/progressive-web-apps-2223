@@ -285,22 +285,33 @@ Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
 ```bash
     ├── node_modules            # Een map met alle node modules
     ├── public                  # Een map met alle static files
-    │   ├── css                 
+    │   ├── css                 # Een map voor de CSS
     │   │   └── style.css       # Main CSS bestand voor alle styling
     │   ├── images              # Een map voor eventuele image bestanden  
     │   │   └── icons           # Een map voor iconen
     │   │       └── icon.png    # Het icoontje dat gebruikt wordt voor de installeerbare applicatie
-    │   ├── js                  
+    │   ├── js                  # Een map voor de JavaScript
     │   │   ├── index-min.js    # De geminificeerde versie van mijn index.js bestand
     │   │   └── index.js        # Main client-side JavaScript bestand
     │   ├── manifest.json       # Bestand dat informatie aan de browser over hoe de webapplicatie moet worden geïnstalleerd en weergegeven
     │   └── service-worker.js   # Bestand dat de logica voor het implementeren van caching en offline functionaliteit in mijn webapplicatie bevat
-    ├── scripts
-    ├── views
-    │   └── index.ejs           # Main HTML bestand
-    ├── index.js
-    ├── manifest.json
-    ├── package-lock.json
-    ├── package.json
-    └── service-worker.js       # Service Worker bestand
+    ├── scripts                 # Hierin wordt Gulp geconfigureert
+    │   ├── build-css.js        # Hierin wordt Gulp op de CSS toegepast
+    │   └── build-js.js         # Hierin wordt Gulp op de JavaScript toegepast
+    ├── source                  # Een map waarin mijn orginele styling en JavaScript staan. Gulp roept deze aan
+    │   ├── css                 # Een map voor de CSS
+    │   │   └── styles.css      # De styling
+    │   └── js                  # Een map voor de JavaScript
+    │       └── script.js       # De JavaScript
+    ├── views                   # Een map voor de statische HTML bestanden
+    │   ├── partials            # Een map voor delen van het main HTML bestand
+    │   │   ├── footer.ejs      # Footer
+    │   │   ├── head.ejs        # Head
+    │   │   ├── header.ejs      # Header (met logo en search optie)
+    │   │   └── popup.ejs       # Pop-up (handelt pop-up logica af)        
+    │   ├── index.ejs           # Main HTML bestand
+    │   └── offline.ejs         # Deze pagina wordt weergeven zodra de gebruiker offline is.
+    ├── index.mjs               # Main server-side JavaScript bestand
+    ├── package-lock.json       # Bestand dat wordt gegeneerd en bijgewerkt door npm wanneer modules worden geïnstalleerd binnen mijn project
+    └── package.json            # Bestand dat wordt wordt gebruikt om informatie te verstrekken over het project
 ```
