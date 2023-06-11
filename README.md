@@ -8,6 +8,7 @@
     - [Het refactoren van de WAfS applicatie](#refactoren)
     - [Tooling](#tooling)
     - [Mappenstructuur](#mappenstructuur)
+    - [Views directory aanmaken](#views)
 - [Week 2](#week2)
     - [Het converteren van de WAfS applicatie naar een Progressive Web App](#converteren)
     - [Service Worker](#service-worker)
@@ -116,6 +117,8 @@ Ik heb als tool nodemon geinstalleerd. Nodemon is een handige tool die je helpt 
 ```json
 "start": "nodemon index.js"
 ```
+
+### Views directory aanmaken <a name="views"></a>
 
 ### Mappenstructuur
 Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
