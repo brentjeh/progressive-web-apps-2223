@@ -125,13 +125,12 @@ Dit is hoe de structuur van mijn views directory eruit ziet:
 ```bash
     └── views
         ├── partials 
-            ├── footer.ejs      # Footer
-            ├── head.ejs        # Head
-            ├── headerjs        # Head
-            ├── head.ejs        # Head
-        │   └──     
+        │   ├── footer.ejs      # Footer
+        │   ├── head.ejs        # Head
+        │   ├── header.ejs      # Header (met logo en search optie)
+        │   └── popup.ejs       # Pop-up (Handelt pop-up logica af)        
         ├── index.ejs           # Main HTML bestand
-        └── offline.ejs         # Main HTML bestand
+        └── offline.ejs         # Deze pagina wordt weergeven zodra de gebruiker offline is.
 ```
 
 ### Mappenstructuur
