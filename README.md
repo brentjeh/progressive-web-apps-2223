@@ -14,6 +14,7 @@
     - [Service Worker](#service-worker)
 - [Week 3](#week3)
     - [Optimaliseren van de performance](#optimaliseren)
+    - [De app installeren](#installeren)
 
 ## Introductie 
 Welkom bij dit project waarin ik je meeneem in het proces van het omzetten van een client-side webapplicatie naar een server-side gerenderde applicatie. Gedurende dit vak, gebaseerd op de "Web App From Scratch" applicatie, zal ik de functionaliteiten van de applicatie uitbreiden en optimalisaties doorvoeren om de prestaties te verbeteren.
@@ -192,3 +193,5 @@ Om dit te doen heb ik een manifest.json bestand toegevoegd aan mijn project. Dit
 ## Week 3 <a name="week3"></a>
 
 ### Optimaliseren van de performance <a name="optimaliseren"></a>
+
+### De app installeren <a name="installeren"></a>
