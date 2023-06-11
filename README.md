@@ -287,9 +287,15 @@ Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
     ├── public                  # Een map met alle static files
     │   ├── css                 
     │   │   └── style.css       # Main CSS bestand voor alle styling
-    │   ├──  js                  
-    │   │   └── main.js         # Main client-side JavaScript bestand
-    │   └── img                 # Een map voor eventuele image bestanden
+    │   ├── images              # Een map voor eventuele image bestanden  
+    │   │   └── icons           # Een map voor iconen
+    │   │       └── icon.png    # Het icoontje dat gebruikt wordt voor de installeerbare applicatie
+    │   ├── js                  
+    │   │   ├── index-min.js    # De geminificeerde versie van mijn index.js bestand
+    │   │   └── index.js        # Main client-side JavaScript bestand
+    │   ├── manifest.json       # Bestand dat informatie aan de browser over hoe de webapplicatie moet worden geïnstalleerd en weergegeven
+    │   └── service-worker.js   # Bestand dat de logica voor het implementeren van caching en offline functionaliteit in mijn webapplicatie bevat
+    ├── scripts
     ├── views
     │   └── index.ejs           # Main HTML bestand
     ├── index.js
