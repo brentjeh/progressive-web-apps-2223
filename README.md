@@ -15,6 +15,7 @@
 - [Week 3](#week3)
     - [Optimaliseren van de performance](#optimaliseren)
     - [De app installeren](#installeren)
+    - [Lighthouse Test](#lighthouse)
     - [Waarom heb ik de webapplicatie geoptimaliseerd op performance en wat heb ik geleerd?](#optimaliseren-geleerd)
 - [Mappenstructuur](#mappenstructuur)
 
@@ -239,7 +240,7 @@ function fetchAndCache(request) {
 De code in de service worker definieert de cache-namen en kernbestanden, installeert de service worker (De 'install' event listener wordt gebruikt om het service worker-bestand te installeren en het cache opslaggebied voor kernbestanden te vullen. Bij het installeren wordt het CORE_CACHE_NAME-opslaggebied geopend en de CORE_ASSETS toegevoegd aan de cache. Het skipWaiting()-method zorgt ervoor dat de service worker onmiddellijk wordt geactiveerd nadat de installatie is voltooid), activeert de service worker (de 'activate' event listener wordt gebruikt om oude caches op te schonen en ervoor te zorgen dat de nieuwe service worker onmiddellijk actief wordt. Bij de activering worden alle cache-namen opgehaald en de caches verwijderd, behalve het CORE_CACHE_NAME en RUNTIME_CACHE_NAME), handelt aanvragen af (de 'fetch' event listener wordt gebruikt om alle netwerkverzoeken af te handelen en te reageren met gecachte gegevens indien beschikbaar. Als het verzoek een HTML-pagina is, wordt er gecontroleerd of er een gecachte versie beschikbaar is in het RUNTIME_CACHE_NAME-opslaggebied. Als er een gecachte versie beschikbaar is, wordt deze als reactie gegeven. Als er geen gecachte versie beschikbaar is, wordt het verzoek naar de server gestuurd en de reactie in het RUNTIME_CACHE_NAME-opslaggebied geplaatst. Als het verzoek een kernbestand is dat in de CORE_ASSETS-array is gedefinieerd, wordt er gecontroleerd of er een gecachte versie beschikbaar is in het CORE_CACHE_NAME-opslaggebied. De fetchAndCache()-functie wordt gebruikt om een verzoek naar de server te sturen, de reactie te cachen in het RUNTIME_CACHE_NAME-opslaggebied en de reactie door te geven aan de oorspronkelijke aanvrager). Over het algemeen zorgt mijn service worker-bestand ervoor dat de kernbestanden van mijn webapplicatie worden gecachet bij de installatie van de service worker en dat HTML-pagina's en andere bestanden worden gecacht en offline beschikbaar zijn via het RUNTIME_CACHE_NAME-opslaggebied. Het biedt ook een fallback-mechanisme waarbij een offline-pagina (/offline) wordt weergegeven als een HTML-verzoek niet kan worden beantwoord door het cache.
 
 ### Activity Diagram van de Service Worker <a name="service-worker-activity-diagram"></a>
-
+<img src="/readmeimgs/activityDiagram.png">
 
 ## Week 3 <a name="week3"></a>
 
@@ -271,8 +272,10 @@ Ik heb hier niet bewust voor geoptimaliseerd.
 De Service Worker intercepteert fetch-verzoeken, inclusief HTML-verzoeken. Als een HTML-verzoek wordt gedetecteerd, probeert de Service Worker de respons te cachen en te reageren met de gecachte versie indien beschikbaar. Dit helpt voorkomen dat de pagina onverwacht verschuift of leeg wordt tijdens het laden, omdat de Service Worker de gecachte versie kan weergeven totdat de nieuwste versie beschikbaar is.
 
 #### 5. Smoothness
-Ik heb hier niet bewust voor geoptimaliseerd. 
+Ik heb hier niet bewust voor geoptimaliseerd.
 
+### Lighthouse Test <a name="lighthouse"></a>
+Om te kijken hoe mijn applicatie scoort op basis van performance, gebruik ik Lighthouse. Lighthouse wordt gebruikt voor het uitvoeren van audits en het beoordelen van de prestaties en kwaliteit van webpagina's.
 
 ### Waarom heb ik de webapplicatie geoptimaliseerd op performance en wat heb ik geleerd? <a name="optimaliseren-geleerd"></a>
 Ik heb de gekozen componenten geoptimaliseerd omdat een van de belangrijkste doelen van het web is dat het toegankelijk is voor iedereen. Door mijn webapplicatie te optimaliseren, maak ik mijn webapplicatie ook toegankelijk voor mensen die een trage pc of laptop hebben. Daarnaast vind ik het erg belangrijk dat de gebruiker een goede gebruikerservaring heeft met mijn webapplicatie. Door de genoemde componenten te optimaliseren, heb ik de algehele gebruikerservaring van mijn webapplicatie verbeterd. Snellere laadtijden, responsieve interacties, visuele stabiliteit en vloeiende animaties dragen allemaal bij aan een prettige en gebruiksvriendelijke ervaring voor mijn gebruikers.
