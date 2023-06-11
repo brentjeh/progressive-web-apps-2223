@@ -11,6 +11,7 @@
 - [Week 2](#week2)
     - [Het converteren van de WAfS applicatie naar een Progressive Web App](#converteren)
     - [Service Worker](#service-worker)
+    - [Activity Diagram van de Service Worker](#service-worker-activity-diagram)
 - [Week 3](#week3)
     - [Optimaliseren van de performance](#optimaliseren)
     - [De app installeren](#installeren)
@@ -236,6 +237,9 @@ function fetchAndCache(request) {
 }
 ```
 De code in de service worker definieert de cache-namen en kernbestanden, installeert de service worker (De 'install' event listener wordt gebruikt om het service worker-bestand te installeren en het cache opslaggebied voor kernbestanden te vullen. Bij het installeren wordt het CORE_CACHE_NAME-opslaggebied geopend en de CORE_ASSETS toegevoegd aan de cache. Het skipWaiting()-method zorgt ervoor dat de service worker onmiddellijk wordt geactiveerd nadat de installatie is voltooid), activeert de service worker (de 'activate' event listener wordt gebruikt om oude caches op te schonen en ervoor te zorgen dat de nieuwe service worker onmiddellijk actief wordt. Bij de activering worden alle cache-namen opgehaald en de caches verwijderd, behalve het CORE_CACHE_NAME en RUNTIME_CACHE_NAME), handelt aanvragen af (de 'fetch' event listener wordt gebruikt om alle netwerkverzoeken af te handelen en te reageren met gecachte gegevens indien beschikbaar. Als het verzoek een HTML-pagina is, wordt er gecontroleerd of er een gecachte versie beschikbaar is in het RUNTIME_CACHE_NAME-opslaggebied. Als er een gecachte versie beschikbaar is, wordt deze als reactie gegeven. Als er geen gecachte versie beschikbaar is, wordt het verzoek naar de server gestuurd en de reactie in het RUNTIME_CACHE_NAME-opslaggebied geplaatst. Als het verzoek een kernbestand is dat in de CORE_ASSETS-array is gedefinieerd, wordt er gecontroleerd of er een gecachte versie beschikbaar is in het CORE_CACHE_NAME-opslaggebied. De fetchAndCache()-functie wordt gebruikt om een verzoek naar de server te sturen, de reactie te cachen in het RUNTIME_CACHE_NAME-opslaggebied en de reactie door te geven aan de oorspronkelijke aanvrager). Over het algemeen zorgt mijn service worker-bestand ervoor dat de kernbestanden van mijn webapplicatie worden gecachet bij de installatie van de service worker en dat HTML-pagina's en andere bestanden worden gecacht en offline beschikbaar zijn via het RUNTIME_CACHE_NAME-opslaggebied. Het biedt ook een fallback-mechanisme waarbij een offline-pagina (/offline) wordt weergegeven als een HTML-verzoek niet kan worden beantwoord door het cache.
+
+### Activity Diagram van de Service Worker <a name="service-worker-activity-diagram"></a>
+
 
 ## Week 3 <a name="week3"></a>
 
