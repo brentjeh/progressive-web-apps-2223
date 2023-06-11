@@ -268,6 +268,9 @@ De Service Worker intercepteert fetch-verzoeken, inclusief HTML-verzoeken. Als e
 #### 5. Smoothness
 Ik heb hier niet bewust voor geoptimaliseerd. 
 
+Ik heb de gekozen componenten geoptimaliseerd omdat een van de belangrijkste doelen van het web is dat het toegankelijk is voor iedereen. Door mijn webapplicatie te optimaliseren, maak ik mijn webapplicatie ook toegankelijk voor mensen die een trage pc of laptop hebben. Daarnaast vind ik het erg belangrijk dat de gebruiker een goede gebruikerservaring heeft met mijn webapplicatie. Door de genoemde componenten te optimaliseren, heb ik de algehele gebruikerservaring van mijn webapplicatie verbeterd. Snellere laadtijden, responsieve interacties, visuele stabiliteit en vloeiende animaties dragen allemaal bij aan een prettige en gebruiksvriendelijke ervaring voor mijn gebruikers.
+Verder heb ik door de componenten te optimaliseren een beter begrip van hoe webprestaties werken en welke factoren van invloed zijn op de laadtijden, responsiviteit en gebruikerservaring van mijn applicatie. Ik heb ook leren werken met optimalisatie tools zoals Gulp en Compression. 
+
 ### De app installeren <a name="installeren"></a>
 
 ### Mappenstructuur
