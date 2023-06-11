@@ -244,6 +244,30 @@ Ik heb in mijn project een 'scripts' mapje staan, waarin de Gulp-configuratie st
 Gulp doet dit voor het CSS bestand door eerst het CSS bestand te selecteren (styles.css) wat in een 'source' map staat. Vervolgens wordt het geselecteerde CSS-bestand samengevoegd tot één bestand genaamd 'index.css' met behulp van de concat-plug-in. Daarna wordt het CSS-bestand geminificeerd met behulp van de cleanCSS-plug-in. Vervolgens wordt autoprefixing (door autoprefixing toe te passen, wordt ervoor gezorgd dat mijn CSS-regels correct worden weergegeven in verschillende browsers, zelfs als ze verschillende prefixen nodig hebben om correct te functioneren. Dit helpt bij het bereiken van een betere cross-browsercompatibiliteit van mijn CSS-stijlen) toegepast op het CSS-bestand met behulp van de autoprefixer-plug-in. Ten slotte wordt het resulterende CSS-bestand (index.css) opgeslagen in de './public/css/' map.
 Gulp doet dit voor het JavaScript bestand door eerst de JavaScript bestanden te selecteren wat in een 'source' map staat. Vervolgens worden de de geselecteerde JavaScript-bestanden samengevoegd tot één bestand genaamd 'index.js' met behulp van de concat-plug-in. Daarna wordt het JavaScript-bestand geminificeerd met behulp van de minify-plug-in. Ten slotte wordt het resulterende JavaScript-bestand opgeslagen in de './public/js/' map.
 
+Als opdracht moest ik 2 of meer van de 5 performance componenten optimaliseren. Dat zijn de volgende componenten:
+1. Perceived load speed
+2. Load responsiveness
+3. Runtime responsiveness
+4. Visual stability
+5. Smoothness
+
+Ik ga per component langs hoe ik deze heb geoptimaliseerd aan de hand van Compression en Gulp.
+
+#### 1. Perceived load speed
+Het gebruik van Gulp en het samenvoegen, minificeren en autoprefixen van CSS- en JavaScript-bestanden heeft bijgedragen aan het optimaliseren van de laadsnelheid van een webpagina. Door CSS en JavaScript te minimaliseren, worden bestandsgroottes verkleind, waardoor ze sneller kunnen worden gedownload en verwerkt. Het samenvoegen van bestanden vermindert ook het aantal verzoeken dat naar de server wordt gestuurd. Verder definieert de service worker een cache met de naam CORE_CACHE_NAME en slaat specifieke assets op in deze cache, zoals de /offline-pagina en /css/index.css. Wanneer een gebruiker de pagina bezoekt, kan de Service Worker deze assets uit de cache halen en onmiddellijk weergeven, zelfs als er geen netwerkverbinding is. Dit draagt bij aan de waargenomen laadsnelheid van de pagina, omdat de essentiële inhoud direct beschikbaar is zonder te hoeven wachten op een netwerkreactie. 
+
+#### 2. Load responsiveness
+Het minimaliseren van JavaScript-bestanden met behulp van de minify-plug-in in mijn Gulp-taak heeft bijgedragen aan het optimaliseren van de laadresponsiviteit. Door de bestandsgrootte te verkleinen, kan het JavaScript sneller worden gedownload en geëvalueerd, waardoor het sneller kan reageren op gebruikersinteractie.
+
+#### 3. Runtime responsiveness
+Ik heb hier niet bewust voor geoptimaliseerd. 
+
+#### 4. Visual stability
+De Service Worker intercepteert fetch-verzoeken, inclusief HTML-verzoeken. Als een HTML-verzoek wordt gedetecteerd, probeert de Service Worker de respons te cachen en te reageren met de gecachte versie indien beschikbaar. Dit helpt voorkomen dat de pagina onverwacht verschuift of leeg wordt tijdens het laden, omdat de Service Worker de gecachte versie kan weergeven totdat de nieuwste versie beschikbaar is.
+
+#### 5. Smoothness
+Ik heb hier niet bewust voor geoptimaliseerd. 
+
 ### De app installeren <a name="installeren"></a>
 
 ### Mappenstructuur
