@@ -114,7 +114,6 @@ app.get('/offline', (req, res) => {
 
 app.listen(1000);
 ```
-
 Deze code importeert de vereiste modules ('compression' wordt gebruikt om compressie van HTTP-responsen in te schakelen, 'express' wordt gebruik als webframework voor het bouwen van de server, 'fetch' wordt geïmporteerd vanuit de node-fetch-bibliotheek om HTTP-verzoeken naar externe API's te maken, path en fileURLToPath worden gebruikt om het huidige bestandssysteempad op te halen). De code initialiseert Express en schakelt compressie in ('app = express()' maakt een Express-applicatie-instantie, 'app.use(compression())' registreert de compressiemiddleware, zodat de server de responsen kan comprimeren voordat ze naar de client worden verzonden). De code stelt statische bestandroutes in ('app.use(express.static(path.join(__dirname, 'public')))' definieert een route voor statische bestanden, waarbij de map 'public' wordt geserveerd als de rootmap voor statische bestanden (bijvoorbeeld CSS, JavaScript-bestanden)). De code configureert de view-engine en weergavepaden ('app.set('view engine', 'ejs')' stelt de weergavemotor in op EJS (Embedded JavaScript), waarmee dynamische HTML-templates kunnen worden gerenderd, 'app.set('views', 'views')' stelt het pad in naar de map waarin de weergavetemplates worden opgeslagen (in dit geval is het 'views')). De code definieert routes en maak HTTP-verzoeken naar de Rijksmuseum API ('app.get('/')' definieert de hoofdroute ('/') waarbij een HTTP GET-verzoek naar de Rijksmuseum API wordt gedaan om een lijst met schilderijen op te halen. De ontvangen gegevens worden vervolgens gerenderd met behulp van het 'index' weergavetemplate, 'app.get('/search')' definieert een route voor het zoeken naar schilderijen op basis van een zoekopdracht. Het maakt een HTTP GET-verzoek naar de Rijksmuseum API met de zoekopdracht en rendert de ontvangen gegevens met behulp van het 'index' weergavetemplate, 'app.get('/offline')' definieert een route voor een offlinepagina die kan worden weergegeven wanneer de server niet beschikbaar is). Als laatst start de code de server ('app.listen(1000)' start de server op poort 1000. Dit betekent dat de server luistert naar inkomende verzoeken op poort 1000 van de lokale machine.
 
 ### Tooling
@@ -173,7 +172,68 @@ Om dit te doen heb ik een manifest.json bestand toegevoegd aan mijn project. Dit
 Een manifest.json-bestand is een JSON-bestand dat wordt gebruikt in progressive web apps om metadata en configuratiegegevens te definiëren. Het manifestbestand beschrijft essentiële informatie over de webapplicatie, zoals de naam, beschrijving, pictogrammen, kleurenthema, weergavemodus en andere eigenschappen.
 
 ### Service Worker <a name="service-worker"></a>
-Mijn service worker bestand (service-worker.js) bevat de logica voor het implementeren van caching en offline functionaliteit in mijn webapplicatie. 
+Mijn service worker bestand (service-worker.js) bevat de logica voor het implementeren van caching en offline functionaliteit in mijn webapplicatie. Dit is hoe ik mijn service worker heb opgezet:
+```js
+const CORE_CACHE_NAME = 'cache-v1';
+const RUNTIME_CACHE_NAME = 'cache-runtime';
+const CORE_ASSETS = [
+  '/offline',
+  '/css/index.css'
+]
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CORE_CACHE_NAME)
+      .then(cache => cache.addAll(CORE_ASSETS))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            if (cacheName !== CORE_CACHE_NAME && cacheName !== RUNTIME_CACHE_NAME) {
+              return caches.delete(cacheName);
+            }
+          })
+        )
+      })
+  )
+})
+
+self.addEventListener('fetch', (event) => {
+  const path = new URL(event.request.url).pathname
+
+  if (event.request.headers.get('accept').includes('text/html')) {
+    event.respondWith(
+      caches.open(RUNTIME_CACHE_NAME)
+        .then(cache => cache.match(event.request))
+        .then(response => response || fetchAndCache(event.request))
+        .catch(() => caches.open(CORE_CACHE_NAME)
+          .then(cache => cache.match('/offline')))
+    )
+  } else if (CORE_ASSETS.includes(path)) {
+    event.respondWith(
+      caches.open(CORE_CACHE_NAME)
+        .then(cache => cache.match(path))
+    )
+  }
+})
+
+function fetchAndCache(request) {
+  return fetch(request)
+    .then(response => {
+      const clone = response.clone()
+      caches.open(RUNTIME_CACHE_NAME)
+        .then(cache => cache.put(request, clone))
+
+      return response
+    })
+}
+```
 
 ## Week 3 <a name="week3"></a>
 
