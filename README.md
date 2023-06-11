@@ -7,7 +7,6 @@
 - [Week 1](#week1)
     - [Het refactoren van de WAfS applicatie](#refactoren)
     - [Tooling](#tooling)
-    - [Mappenstructuur](#mappenstructuur)
     - [Views en Public directory aanmaken](#views)
 - [Week 2](#week2)
     - [Het converteren van de WAfS applicatie naar een Progressive Web App](#converteren)
@@ -15,6 +14,7 @@
 - [Week 3](#week3)
     - [Optimaliseren van de performance](#optimaliseren)
     - [De app installeren](#installeren)
+- [Mappenstructuur](#mappenstructuur)
 
 ## Introductie 
 Welkom bij dit project waarin ik je meeneem in het proces van het omzetten van een client-side webapplicatie naar een server-side gerenderde applicatie. Gedurende dit vak, gebaseerd op de "Web App From Scratch" applicatie, zal ik de functionaliteiten van de applicatie uitbreiden en optimalisaties doorvoeren om de prestaties te verbeteren.
