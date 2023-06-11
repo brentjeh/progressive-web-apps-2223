@@ -140,7 +140,7 @@ Dit is hoe de structuur van mijn public directory eruit ziet:
         │   └── index.css       # Main CSS bestand voor alle styling
         ├──  js  
         │   ├── index-min.js    # Een geminimaliseerde (gecomprimeerde) versie van de JavaScript-code voor mijn webapplicatie
-        │   └── main.js         # Main client-side JavaScript bestand
+        │   └── index.js         # Main client-side JavaScript bestand
         └── img                 # Een map voor eventuele image bestanden
             └── icon.png        # Icoontje voor de geïnstalleerde versie van mijn webapplicatie
 ```
