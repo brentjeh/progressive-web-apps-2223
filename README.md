@@ -118,7 +118,9 @@ Ik heb als tool nodemon geinstalleerd. Nodemon is een handige tool die je helpt 
 "start": "nodemon index.js"
 ```
 
-### Views directory aanmaken <a name="views"></a>
+### Views en Public directory aanmaken <a name="views"></a>
+Ik heb een views directory aangemaakt in mijn project om hierin mijn sjabloonbestanden te plaatsen voor mijn webpagina's. In deze directory zit een mapje genaamd 'partials'. In dit mapje plaats ik alle delen van mijn uiteindelijke HTML structuur. In mijn index.ejs bestand, die gelocaliseert is in de views directory maar buiten de 'partials' map, roep ik alle partials aan om de HTML structuur compleet te maken. 
+Ik heb ook een public directory gemaakt, waarin ik alle statische bestanden van mijn webapplicatie geplaatst heb, zoals CSS-bestanden, JavaScript-bestanden en afbeeldingen.
 
 ### Mappenstructuur
 Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
