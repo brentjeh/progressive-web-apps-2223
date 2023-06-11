@@ -14,9 +14,9 @@
     - [Activity Diagram van de Service Worker](#service-worker-activity-diagram)
 - [Week 3](#week3)
     - [Optimaliseren van de performance](#optimaliseren)
-    - [De app installeren](#installeren)
     - [Lighthouse Test](#lighthouse)
     - [Waarom heb ik de webapplicatie geoptimaliseerd op performance en wat heb ik geleerd?](#optimaliseren-geleerd)
+    - [De app installeren](#installeren)
 - [Mappenstructuur](#mappenstructuur)
 
 ## Introductie 
