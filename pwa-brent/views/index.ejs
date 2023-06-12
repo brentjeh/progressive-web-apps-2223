@@ -1,0 +1,12 @@
+<%- include('partials/head'); %>  
+    <%- include('partials/header'); %>
+    <%- include('partials/popup'); %>
+    <div id="paintings-container">
+        <% data.artObjects.forEach(value => { %>
+            <div class="painting-container" id="<%= value.objectNumber %>">
+                <img src="<%= value.webImage.url %>">
+                <h2><%= value.title %></h2>
+            </div>
+        <% }) %>
+    </div>
+<%- include('partials/footer'); %>
