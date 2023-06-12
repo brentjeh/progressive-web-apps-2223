@@ -3,6 +3,7 @@
 ## Inhoudsopgave
 - [Introductie](#introductie)
 - [De Web App from Scratch applicatie](#wafs-app)
+- [Online Versie](#online)
 - [Installeren van de server-side Web App](#installatie)
 - [Week 1](#week1)
     - [Het refactoren van de WAfS applicatie](#refactoren)
@@ -36,6 +37,9 @@ In deze applicatie kan de gebruiker kunstwerken bekijken en ontdekken vanuit de 
 - Pop-upvenster met details: Wanneer de gebruiker op een kunstwerk klik, opent er een pop-upvenster met meer details over dat specifieke kunstwerk. De gebruiker ziet een grotere afbeelding van het kunstwerk, de titel en informatie over de kunstenaar.
 
 Met deze functionaliteiten kan de gebruiker door de kunstcollectie bladeren, kunstwerken vinden die de gebruiker aanspreken en meer te weten komen over de kunstenaars die ze hebben gemaakt.
+
+## Online Versie <a name="online"></a>
+https://progressive-web-app-brent.onrender.com/
 
 ## Installeren van de server-side Web App <a name="installatie"></a>
 
