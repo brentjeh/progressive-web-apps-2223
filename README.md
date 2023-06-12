@@ -281,10 +281,10 @@ Ik heb hier niet bewust voor geoptimaliseerd.
 ### Lighthouse Test <a name="lighthouse"></a>
 Om te kijken hoe mijn applicatie scoort op basis van performance, gebruik ik Lighthouse. Lighthouse wordt gebruikt voor het uitvoeren van audits en het beoordelen van de prestaties en kwaliteit van webpagina's.
 
-Lighthouse eerste test:<br>
+#### Lighthouse eerste test:
 <img src="/images-readme/lighthouse-eerste-test.png" width:500px>
 
-Lighthouse tweede test:<br>
+#### Lighthouse tweede test:
 <img src="/images-readme/lighthouse-tweede-test.png" width:500px>
 
 ### Waarom heb ik de webapplicatie geoptimaliseerd op performance en wat heb ik geleerd? <a name="optimaliseren-geleerd"></a>
