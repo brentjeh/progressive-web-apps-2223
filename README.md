@@ -1,16 +1,23 @@
 # Progressive Web Apps @cmda-minor-web 2022 - 2023
 
-## Inleiding
+## Inhoudsopgave
 - [Introductie](#introductie)
 - [De Web App from Scratch applicatie](#wafs-app)
 - [Installeren van de server-side Web App](#installatie)
 - [Week 1](#week1)
     - [Het refactoren van de WAfS applicatie](#refactoren)
     - [Tooling](#tooling)
-    - [Mappenstructuur](#mappenstructuur)
+    - [Views en Public directory aanmaken](#views)
 - [Week 2](#week2)
     - [Het converteren van de WAfS applicatie naar een Progressive Web App](#converteren)
     - [Service Worker](#service-worker)
+    - [Activity Diagram van de Service Worker](#service-worker-activity-diagram)
+- [Week 3](#week3)
+    - [Optimaliseren van de performance](#optimaliseren)
+    - [Lighthouse Test](#lighthouse)
+    - [Waarom heb ik de webapplicatie geoptimaliseerd op performance en wat heb ik geleerd?](#optimaliseren-geleerd)
+    - [De app installeren](#installeren)
+- [Mappenstructuur](#mappenstructuur)
 
 ## Introductie 
 Welkom bij dit project waarin ik je meeneem in het proces van het omzetten van een client-side webapplicatie naar een server-side gerenderde applicatie. Gedurende dit vak, gebaseerd op de "Web App From Scratch" applicatie, zal ik de functionaliteiten van de applicatie uitbreiden en optimalisaties doorvoeren om de prestaties te verbeteren.
@@ -44,13 +51,13 @@ npm install
 
 Om de applicatie te starten:
 ```
-npm start
+npm run dev
 ```
 
 ## Week 1 <a name="week1"></a>
 
 ### Het refactoren van de WAfS applicatie <a name="refactoren"></a>
-Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, Node.js, Express, EJS en nodemon. Eerst heb ik een nieuw Node.js project aangemaakt door het volgende in te tikken in mijn terminal:
+Ik wil dit gaan doen aan de hand van HTML, CSS, JavaScript, Node.js, node-fetch, Express, EJS, nodemon en Gulp. Eerst heb ik een nieuw Node.js project aangemaakt door het volgende in te tikken in mijn terminal:
 ```
 npm init
 ```
@@ -58,34 +65,59 @@ Dit heeft een nieuw package.json aangemaakt in mijn mappenstructuur.
 
 Daarna ben ik Express, EJS en nodemon gaan installeren met de volgende command:
 ```
-npm install express nodemon ejs
+npm install express nodemon ejs node-fetch compression
 ```
-Vervolgens heb ik een nieuw index.js bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet. Deze code maakt een server aan met Express en luistert naar poort 3000. Het maakt gebruik van de express.static middleware om statische bestanden te serveren, zoals CSS-, JavaScript- en afbeeldingsbestanden. De views map wordt ingesteld als de map voor de EJS-weergaven. Wanneer een verzoek naar de hoofdroute ("/") wordt ontvangen, wordt het bestand "index.ejs" gerenderd en als respons teruggestuurd naar de client.
+Vervolgens heb ik een nieuw index.mjs bestand gaan maken. Dit bestand dient als een entry point tot mijn server-side applicatie. In dit bestand heb ik volgende code gezet.
 ```js
-// De benodigde modules requiren
-const express = require('express');
+import compression from 'compression';
+import express from 'express';
 const app = express();
-const port = 3000;
+app.use(compression());
 
-// Naar port luisteren
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
-  });
+import fetch from 'node-fetch';
 
-// Statische files opzetten
-app.use(express.static('public'))
-app.use('/css', express.static(__dirname + '/public/css'))
-app.use('/js', express.static(__dirname + '/public/js'))
-app.use('/img', express.static(__dirname + '/public/img'))
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Set views
-app.set('views', './views')
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 app.get('/', (req, res) => {
-    res.render('index');
-  });
+    fetch("https://www.rijksmuseum.nl/api/en/collection?key=RCZaMbZZ&format=json&type=painting&ps=48")
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            res.set('Cache-control', 'public, max-age=31536000')
+            res.render('index', {
+                data: data
+            });
+        })
+});
+
+app.get('/search', (req, res) => {
+    fetch(`https://www.rijksmuseum.nl/api/en/collection?key=RCZaMbZZ&q=${req.query.query}&format=json&type=painting&ps=48`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            res.set('Cache-control', 'public, max-age=31536000')
+            res.render('index', {
+                data: data
+            });
+        })
+});
+
+app.get('/offline', (req, res) => {
+    res.render('offline');
+});
+
+app.listen(1000);
 ```
+Deze code importeert de vereiste modules ('compression' wordt gebruikt om compressie van HTTP-responsen in te schakelen, 'express' wordt gebruik als webframework voor het bouwen van de server, 'fetch' wordt geïmporteerd vanuit de node-fetch-bibliotheek om HTTP-verzoeken naar externe API's te maken, path en fileURLToPath worden gebruikt om het huidige bestandssysteempad op te halen). De code initialiseert Express en schakelt compressie in ('app = express()' maakt een Express-applicatie-instantie, 'app.use(compression())' registreert de compressiemiddleware, zodat de server de responsen kan comprimeren voordat ze naar de client worden verzonden). De code stelt statische bestandroutes in ('app.use(express.static(path.join(__dirname, 'public')))' definieert een route voor statische bestanden, waarbij de map 'public' wordt geserveerd als de rootmap voor statische bestanden (bijvoorbeeld CSS, JavaScript-bestanden)). De code configureert de view-engine en weergavepaden ('app.set('view engine', 'ejs')' stelt de weergavemotor in op EJS (Embedded JavaScript), waarmee dynamische HTML-templates kunnen worden gerenderd, 'app.set('views', 'views')' stelt het pad in naar de map waarin de weergavetemplates worden opgeslagen (in dit geval is het 'views')). De code definieert routes en maak HTTP-verzoeken naar de Rijksmuseum API ('app.get('/')' definieert de hoofdroute ('/') waarbij een HTTP GET-verzoek naar de Rijksmuseum API wordt gedaan om een lijst met schilderijen op te halen. De ontvangen gegevens worden vervolgens gerenderd met behulp van het 'index' weergavetemplate, 'app.get('/search')' definieert een route voor het zoeken naar schilderijen op basis van een zoekopdracht. Het maakt een HTTP GET-verzoek naar de Rijksmuseum API met de zoekopdracht en rendert de ontvangen gegevens met behulp van het 'index' weergavetemplate, 'app.get('/offline')' definieert een route voor een offlinepagina die kan worden weergegeven wanneer de server niet beschikbaar is). Als laatst start de code de server ('app.listen(1000)' start de server op poort 1000. Dit betekent dat de server luistert naar inkomende verzoeken op poort 1000 van de lokale machine.
 
 ### Tooling
 Ik heb als tool nodemon geinstalleerd. Nodemon is een handige tool die je helpt bij het ontwikkelen van Node.js-applicaties. Het zorgt ervoor dat je server automatisch opnieuw wordt gestart telkens wanneer je wijzigingen aanbrengt in je code. Normaal gesproken zou je de server handmatig moeten stoppen en opnieuw starten, maar nodemon neemt dat werk voor je uit handen. In mijn package.json bestand heb ik de volgende regel gezet:
@@ -93,23 +125,31 @@ Ik heb als tool nodemon geinstalleerd. Nodemon is een handige tool die je helpt 
 "start": "nodemon index.js"
 ```
 
-### Mappenstructuur
-Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
+### Views en Public directory aanmaken <a name="views"></a>
+Ik heb een views directory aangemaakt in mijn project om hierin mijn sjabloonbestanden te plaatsen voor mijn webpagina's. In deze directory zit een mapje genaamd 'partials'. In dit mapje plaats ik alle delen van mijn uiteindelijke HTML structuur. In mijn index.ejs bestand, die gelocaliseert is in de views directory maar buiten de 'partials' map, roep ik alle partials aan om de HTML structuur compleet te maken. 
+Ik heb ook een public directory gemaakt, waarin ik alle statische bestanden van mijn webapplicatie geplaatst heb, zoals CSS-bestanden, JavaScript-bestanden en afbeeldingen.
+Dit is hoe de structuur van mijn views directory eruit ziet:
 ```bash
-    ├── node_modules            # Een map met alle node modules
-    ├── public                  # Een map met alle static files
-    │   ├── css                 
-    │   │   └── style.css       # Main CSS bestand voor alle styling
-    │   ├──  js                  
-    │   │   └── main.js         # Main client-side JavaScript bestand
-    │   └── img                 # Een map voor eventuele image bestanden
-    ├── views
-    │   └── index.ejs           # Main HTML bestand
-    ├── index.js
-    ├── manifest.json
-    ├── package-lock.json
-    ├── package.json
-    └── service-worker.js       # Service Worker bestand
+    └── views
+        ├── partials 
+        │   ├── footer.ejs      # Footer
+        │   ├── head.ejs        # Head
+        │   ├── header.ejs      # Header (met logo en search optie)
+        │   └── popup.ejs       # Pop-up (Handelt pop-up logica af)        
+        ├── index.ejs           # Main HTML bestand
+        └── offline.ejs         # Deze pagina wordt weergeven zodra de gebruiker offline is.
+```
+
+Dit is hoe de structuur van mijn public directory eruit ziet:
+```bash
+    └── public                  # Een map met alle static files
+        ├── css                 
+        │   └── index.css       # Main CSS bestand voor alle styling
+        ├──  js  
+        │   ├── index-min.js    # Een geminimaliseerde (gecomprimeerde) versie van de JavaScript-code voor mijn webapplicatie
+        │   └── index.js        # Main client-side JavaScript bestand
+        └── img                 # Een map voor eventuele image bestanden
+            └── icon.png        # Icoontje voor de geïnstalleerde versie van mijn webapplicatie
 ```
 
 ## Week 2 <a name="week2"></a>
@@ -132,5 +172,153 @@ Om dit te doen heb ik een manifest.json bestand toegevoegd aan mijn project. Dit
     "display": "standalone"
   }
 ```
+Een manifest.json-bestand is een JSON-bestand dat wordt gebruikt in progressive web apps om metadata en configuratiegegevens te definiëren. Het manifestbestand beschrijft essentiële informatie over de webapplicatie, zoals de naam, beschrijving, pictogrammen, kleurenthema, weergavemodus en andere eigenschappen.
 
 ### Service Worker <a name="service-worker"></a>
+Mijn service worker bestand (service-worker.js) bevat de logica voor het implementeren van caching en offline functionaliteit in mijn webapplicatie. Dit is hoe ik mijn service worker heb opgezet:
+```js
+const CORE_CACHE_NAME = 'cache-v1';
+const RUNTIME_CACHE_NAME = 'cache-runtime';
+const CORE_ASSETS = [
+  '/offline',
+  '/css/index.css'
+]
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CORE_CACHE_NAME)
+      .then(cache => cache.addAll(CORE_ASSETS))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            if (cacheName !== CORE_CACHE_NAME && cacheName !== RUNTIME_CACHE_NAME) {
+              return caches.delete(cacheName);
+            }
+          })
+        )
+      })
+  )
+})
+
+self.addEventListener('fetch', (event) => {
+  const path = new URL(event.request.url).pathname
+
+  if (event.request.headers.get('accept').includes('text/html')) {
+    event.respondWith(
+      caches.open(RUNTIME_CACHE_NAME)
+        .then(cache => cache.match(event.request))
+        .then(response => response || fetchAndCache(event.request))
+        .catch(() => caches.open(CORE_CACHE_NAME)
+          .then(cache => cache.match('/offline')))
+    )
+  } else if (CORE_ASSETS.includes(path)) {
+    event.respondWith(
+      caches.open(CORE_CACHE_NAME)
+        .then(cache => cache.match(path))
+    )
+  }
+})
+
+function fetchAndCache(request) {
+  return fetch(request)
+    .then(response => {
+      const clone = response.clone()
+      caches.open(RUNTIME_CACHE_NAME)
+        .then(cache => cache.put(request, clone))
+
+      return response
+    })
+}
+```
+De code in de service worker definieert de cache-namen en kernbestanden, installeert de service worker (De 'install' event listener wordt gebruikt om het service worker-bestand te installeren en het cache opslaggebied voor kernbestanden te vullen. Bij het installeren wordt het CORE_CACHE_NAME-opslaggebied geopend en de CORE_ASSETS toegevoegd aan de cache. Het skipWaiting()-method zorgt ervoor dat de service worker onmiddellijk wordt geactiveerd nadat de installatie is voltooid), activeert de service worker (de 'activate' event listener wordt gebruikt om oude caches op te schonen en ervoor te zorgen dat de nieuwe service worker onmiddellijk actief wordt. Bij de activering worden alle cache-namen opgehaald en de caches verwijderd, behalve het CORE_CACHE_NAME en RUNTIME_CACHE_NAME), handelt aanvragen af (de 'fetch' event listener wordt gebruikt om alle netwerkverzoeken af te handelen en te reageren met gecachte gegevens indien beschikbaar. Als het verzoek een HTML-pagina is, wordt er gecontroleerd of er een gecachte versie beschikbaar is in het RUNTIME_CACHE_NAME-opslaggebied. Als er een gecachte versie beschikbaar is, wordt deze als reactie gegeven. Als er geen gecachte versie beschikbaar is, wordt het verzoek naar de server gestuurd en de reactie in het RUNTIME_CACHE_NAME-opslaggebied geplaatst. Als het verzoek een kernbestand is dat in de CORE_ASSETS-array is gedefinieerd, wordt er gecontroleerd of er een gecachte versie beschikbaar is in het CORE_CACHE_NAME-opslaggebied. De fetchAndCache()-functie wordt gebruikt om een verzoek naar de server te sturen, de reactie te cachen in het RUNTIME_CACHE_NAME-opslaggebied en de reactie door te geven aan de oorspronkelijke aanvrager). Over het algemeen zorgt mijn service worker-bestand ervoor dat de kernbestanden van mijn webapplicatie worden gecachet bij de installatie van de service worker en dat HTML-pagina's en andere bestanden worden gecacht en offline beschikbaar zijn via het RUNTIME_CACHE_NAME-opslaggebied. Het biedt ook een fallback-mechanisme waarbij een offline-pagina (/offline) wordt weergegeven als een HTML-verzoek niet kan worden beantwoord door het cache.
+
+### Activity Diagram van de Service Worker <a name="service-worker-activity-diagram"></a>
+<img src="/readmeimgs/activityDiagram.png">
+
+## Week 3 <a name="week3"></a>
+
+### Optimaliseren van de performance <a name="optimaliseren"></a>
+Om de performance van mijn webapplicatie te optimaliseren heb ik de Node.js Compression middleware (Node.js Compression is een module in de Node.js runtime-omgeving die functionaliteit biedt voor het comprimeren van HTTP-responses die worden verzonden door een webserver. Het helpt bij het verkleinen van de omvang van de gegevens die worden overgedragen tussen de server en de client, wat resulteert in snellere overdracht en verbeterde prestaties) en Gulp (Gulp is gebaseerd op de Node.js runtime-omgeving en wordt gebruikt voor het automatiseren van verschillende ontwikkelingstaken, zoals het samenvoegen en minificeren van bestanden, het compileren van CSS-preprocessors, het optimaliseren van afbeeldingen en nog veel meer). 
+Ik heb in mijn project een 'scripts' mapje staan, waarin de Gulp-configuratie staat, voor beide CSS en JavaScript. 
+Gulp doet dit voor het CSS bestand door eerst het CSS bestand te selecteren (styles.css) wat in een 'source' map staat. Vervolgens wordt het geselecteerde CSS-bestand samengevoegd tot één bestand genaamd 'index.css' met behulp van de concat-plug-in. Daarna wordt het CSS-bestand geminificeerd met behulp van de cleanCSS-plug-in. Vervolgens wordt autoprefixing (door autoprefixing toe te passen, wordt ervoor gezorgd dat mijn CSS-regels correct worden weergegeven in verschillende browsers, zelfs als ze verschillende prefixen nodig hebben om correct te functioneren. Dit helpt bij het bereiken van een betere cross-browsercompatibiliteit van mijn CSS-stijlen) toegepast op het CSS-bestand met behulp van de autoprefixer-plug-in. Ten slotte wordt het resulterende CSS-bestand (index.css) opgeslagen in de './public/css/' map.
+Gulp doet dit voor het JavaScript bestand door eerst de JavaScript bestanden te selecteren wat in een 'source' map staat. Vervolgens worden de de geselecteerde JavaScript-bestanden samengevoegd tot één bestand genaamd 'index.js' met behulp van de concat-plug-in. Daarna wordt het JavaScript-bestand geminificeerd met behulp van de minify-plug-in. Ten slotte wordt het resulterende JavaScript-bestand opgeslagen in de './public/js/' map.
+
+Als opdracht moest ik 2 of meer van de 5 performance componenten optimaliseren. Dat zijn de volgende componenten:
+1. Perceived load speed
+2. Load responsiveness
+3. Runtime responsiveness
+4. Visual stability
+5. Smoothness
+
+Ik ga per component langs hoe ik deze heb geoptimaliseerd aan de hand van Compression, Gulp en de Service Worker.
+
+#### 1. Perceived load speed
+Het gebruik van Gulp en het samenvoegen, minificeren en autoprefixen van CSS- en JavaScript-bestanden heeft bijgedragen aan het optimaliseren van de laadsnelheid van een webpagina. Door CSS en JavaScript te minimaliseren, worden bestandsgroottes verkleind, waardoor ze sneller kunnen worden gedownload en verwerkt. Het samenvoegen van bestanden vermindert ook het aantal verzoeken dat naar de server wordt gestuurd. Verder definieert de service worker een cache met de naam CORE_CACHE_NAME en slaat specifieke assets op in deze cache, zoals de /offline-pagina en /css/index.css. Wanneer een gebruiker de pagina bezoekt, kan de Service Worker deze assets uit de cache halen en onmiddellijk weergeven, zelfs als er geen netwerkverbinding is. Dit draagt bij aan de waargenomen laadsnelheid van de pagina, omdat de essentiële inhoud direct beschikbaar is zonder te hoeven wachten op een netwerkreactie. 
+
+#### 2. Load responsiveness
+Het minimaliseren van JavaScript-bestanden met behulp van de minify-plug-in in mijn Gulp-taak heeft bijgedragen aan het optimaliseren van de laadresponsiviteit. Door de bestandsgrootte te verkleinen, kan het JavaScript sneller worden gedownload en geëvalueerd, waardoor het sneller kan reageren op gebruikersinteractie.
+
+#### 3. Runtime responsiveness
+Ik heb hier niet bewust voor geoptimaliseerd. 
+
+#### 4. Visual stability
+De Service Worker intercepteert fetch-verzoeken, inclusief HTML-verzoeken. Als een HTML-verzoek wordt gedetecteerd, probeert de Service Worker de respons te cachen en te reageren met de gecachte versie indien beschikbaar. Dit helpt voorkomen dat de pagina onverwacht verschuift of leeg wordt tijdens het laden, omdat de Service Worker de gecachte versie kan weergeven totdat de nieuwste versie beschikbaar is.
+
+#### 5. Smoothness
+Ik heb hier niet bewust voor geoptimaliseerd.
+
+### Lighthouse Test <a name="lighthouse"></a>
+Om te kijken hoe mijn applicatie scoort op basis van performance, gebruik ik Lighthouse. Lighthouse wordt gebruikt voor het uitvoeren van audits en het beoordelen van de prestaties en kwaliteit van webpagina's.
+
+<img src="/readmeimgs/activityDiagram.png">
+
+<img src="/readmeimgs/activityDiagram.png">
+
+### Waarom heb ik de webapplicatie geoptimaliseerd op performance en wat heb ik geleerd? <a name="optimaliseren-geleerd"></a>
+Ik heb de gekozen componenten geoptimaliseerd omdat een van de belangrijkste doelen van het web is dat het toegankelijk is voor iedereen. Door mijn webapplicatie te optimaliseren, maak ik mijn webapplicatie ook toegankelijk voor mensen die een trage pc of laptop hebben. Daarnaast vind ik het erg belangrijk dat de gebruiker een goede gebruikerservaring heeft met mijn webapplicatie. Door de genoemde componenten te optimaliseren, heb ik de algehele gebruikerservaring van mijn webapplicatie verbeterd. Snellere laadtijden, responsieve interacties, visuele stabiliteit en vloeiende animaties dragen allemaal bij aan een prettige en gebruiksvriendelijke ervaring voor mijn gebruikers.
+Verder heb ik door de componenten te optimaliseren een beter begrip van hoe webprestaties werken en welke factoren van invloed zijn op de laadtijden, responsiviteit en gebruikerservaring van mijn applicatie. Ik heb ook leren werken met optimalisatie tools zoals Gulp en Compression. 
+
+### De app installeren <a name="installeren"></a>
+
+### Mappenstructuur
+Dit is hoe mijn mappenstructuur er uiteindelijk uit ziet:
+```bash
+    ├── node_modules            # Een map met alle node modules
+    ├── public                  # Een map met alle static files
+    │   ├── css                 # Een map voor de CSS
+    │   │   └── style.css       # Main CSS bestand voor alle styling
+    │   ├── images              # Een map voor eventuele image bestanden  
+    │   │   └── icons           # Een map voor iconen
+    │   │       └── icon.png    # Het icoontje dat gebruikt wordt voor de installeerbare applicatie
+    │   ├── js                  # Een map voor de JavaScript
+    │   │   ├── index-min.js    # De geminificeerde versie van mijn index.js bestand
+    │   │   └── index.js        # Main client-side JavaScript bestand
+    │   ├── manifest.json       # Bestand dat informatie aan de browser over hoe de webapplicatie moet worden geïnstalleerd en weergegeven
+    │   └── service-worker.js   # Bestand dat de logica voor het implementeren van caching en offline functionaliteit in mijn webapplicatie bevat
+    ├── scripts                 # Hierin wordt Gulp geconfigureert
+    │   ├── build-css.js        # Hierin wordt Gulp op de CSS toegepast
+    │   └── build-js.js         # Hierin wordt Gulp op de JavaScript toegepast
+    ├── source                  # Een map waarin mijn orginele styling en JavaScript staan. Gulp roept deze aan
+    │   ├── css                 # Een map voor de CSS
+    │   │   └── styles.css      # De styling
+    │   └── js                  # Een map voor de JavaScript
+    │       └── script.js       # De JavaScript
+    ├── views                   # Een map voor de statische HTML bestanden
+    │   ├── partials            # Een map voor delen van het main HTML bestand
+    │   │   ├── footer.ejs      # Footer
+    │   │   ├── head.ejs        # Head
+    │   │   ├── header.ejs      # Header (met logo en search optie)
+    │   │   └── popup.ejs       # Pop-up (handelt pop-up logica af)        
+    │   ├── index.ejs           # Main HTML bestand
+    │   └── offline.ejs         # Deze pagina wordt weergeven zodra de gebruiker offline is.
+    ├── index.mjs               # Main server-side JavaScript bestand
+    ├── package-lock.json       # Bestand dat wordt gegeneerd en bijgewerkt door npm wanneer modules worden geïnstalleerd binnen mijn project
+    └── package.json            # Bestand dat wordt wordt gebruikt om informatie te verstrekken over het project
+```
