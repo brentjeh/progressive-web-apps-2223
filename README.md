@@ -281,11 +281,11 @@ Ik heb hier niet bewust voor geoptimaliseerd.
 ### Lighthouse Test <a name="lighthouse"></a>
 Om te kijken hoe mijn applicatie scoort op basis van performance, gebruik ik Lighthouse. Lighthouse wordt gebruikt voor het uitvoeren van audits en het beoordelen van de prestaties en kwaliteit van webpagina's.
 
-Lighthouse eerste test:
-<img src="/images-readme/lighthouse-eerste-test.png">
+#### Lighthouse eerste test:
+<img src="/images-readme/lighthouse-eerste-test.png" width:500px>
 
-Lighthouse tweede test:
-<img src="/images-readme/lighthouse-tweede-test.png">
+#### Lighthouse tweede test:
+<img src="/images-readme/lighthouse-tweede-test.png" width:500px>
 
 ### Waarom heb ik de webapplicatie geoptimaliseerd op performance en wat heb ik geleerd? <a name="optimaliseren-geleerd"></a>
 Ik heb de gekozen componenten geoptimaliseerd omdat een van de belangrijkste doelen van het web is dat het toegankelijk is voor iedereen. Door mijn webapplicatie te optimaliseren, maak ik mijn webapplicatie ook toegankelijk voor mensen die een trage pc of laptop hebben. Daarnaast vind ik het erg belangrijk dat de gebruiker een goede gebruikerservaring heeft met mijn webapplicatie. Door de genoemde componenten te optimaliseren, heb ik de algehele gebruikerservaring van mijn webapplicatie verbeterd. Snellere laadtijden, responsieve interacties, visuele stabiliteit en vloeiende animaties dragen allemaal bij aan een prettige en gebruiksvriendelijke ervaring voor mijn gebruikers.
