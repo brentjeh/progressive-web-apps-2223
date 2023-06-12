@@ -3,6 +3,7 @@
 ## Inhoudsopgave
 - [Introductie](#introductie)
 - [De Web App from Scratch applicatie](#wafs-app)
+- [Online Versie](#online)
 - [Installeren van de server-side Web App](#installatie)
 - [Week 1](#week1)
     - [Het refactoren van de WAfS applicatie](#refactoren)
@@ -36,6 +37,9 @@ In deze applicatie kan de gebruiker kunstwerken bekijken en ontdekken vanuit de 
 - Pop-upvenster met details: Wanneer de gebruiker op een kunstwerk klik, opent er een pop-upvenster met meer details over dat specifieke kunstwerk. De gebruiker ziet een grotere afbeelding van het kunstwerk, de titel en informatie over de kunstenaar.
 
 Met deze functionaliteiten kan de gebruiker door de kunstcollectie bladeren, kunstwerken vinden die de gebruiker aanspreken en meer te weten komen over de kunstenaars die ze hebben gemaakt.
+
+## Online Versie <a name="online"></a>
+https://progressive-web-app-brent.onrender.com/
 
 ## Installeren van de server-side Web App <a name="installatie"></a>
 
@@ -240,7 +244,7 @@ function fetchAndCache(request) {
 De code in de service worker definieert de cache-namen en kernbestanden, installeert de service worker (De 'install' event listener wordt gebruikt om het service worker-bestand te installeren en het cache opslaggebied voor kernbestanden te vullen. Bij het installeren wordt het CORE_CACHE_NAME-opslaggebied geopend en de CORE_ASSETS toegevoegd aan de cache. Het skipWaiting()-method zorgt ervoor dat de service worker onmiddellijk wordt geactiveerd nadat de installatie is voltooid), activeert de service worker (de 'activate' event listener wordt gebruikt om oude caches op te schonen en ervoor te zorgen dat de nieuwe service worker onmiddellijk actief wordt. Bij de activering worden alle cache-namen opgehaald en de caches verwijderd, behalve het CORE_CACHE_NAME en RUNTIME_CACHE_NAME), handelt aanvragen af (de 'fetch' event listener wordt gebruikt om alle netwerkverzoeken af te handelen en te reageren met gecachte gegevens indien beschikbaar. Als het verzoek een HTML-pagina is, wordt er gecontroleerd of er een gecachte versie beschikbaar is in het RUNTIME_CACHE_NAME-opslaggebied. Als er een gecachte versie beschikbaar is, wordt deze als reactie gegeven. Als er geen gecachte versie beschikbaar is, wordt het verzoek naar de server gestuurd en de reactie in het RUNTIME_CACHE_NAME-opslaggebied geplaatst. Als het verzoek een kernbestand is dat in de CORE_ASSETS-array is gedefinieerd, wordt er gecontroleerd of er een gecachte versie beschikbaar is in het CORE_CACHE_NAME-opslaggebied. De fetchAndCache()-functie wordt gebruikt om een verzoek naar de server te sturen, de reactie te cachen in het RUNTIME_CACHE_NAME-opslaggebied en de reactie door te geven aan de oorspronkelijke aanvrager). Over het algemeen zorgt mijn service worker-bestand ervoor dat de kernbestanden van mijn webapplicatie worden gecachet bij de installatie van de service worker en dat HTML-pagina's en andere bestanden worden gecacht en offline beschikbaar zijn via het RUNTIME_CACHE_NAME-opslaggebied. Het biedt ook een fallback-mechanisme waarbij een offline-pagina (/offline) wordt weergegeven als een HTML-verzoek niet kan worden beantwoord door het cache.
 
 ### Activity Diagram van de Service Worker <a name="service-worker-activity-diagram"></a>
-<img src="/readmeimgs/activityDiagram.png">
+<img src="/images-readme/service-worker-activity-diagram.jpg">
 
 ## Week 3 <a name="week3"></a>
 
@@ -277,9 +281,11 @@ Ik heb hier niet bewust voor geoptimaliseerd.
 ### Lighthouse Test <a name="lighthouse"></a>
 Om te kijken hoe mijn applicatie scoort op basis van performance, gebruik ik Lighthouse. Lighthouse wordt gebruikt voor het uitvoeren van audits en het beoordelen van de prestaties en kwaliteit van webpagina's.
 
-<img src="/readmeimgs/activityDiagram.png">
+Lighthouse eerste test:
+<img src="/images-readme/lighthouse-eerste-test.png">
 
-<img src="/readmeimgs/activityDiagram.png">
+Lighthouse tweede test:
+<img src="/images-readme/lighthouse-tweede-test.png">
 
 ### Waarom heb ik de webapplicatie geoptimaliseerd op performance en wat heb ik geleerd? <a name="optimaliseren-geleerd"></a>
 Ik heb de gekozen componenten geoptimaliseerd omdat een van de belangrijkste doelen van het web is dat het toegankelijk is voor iedereen. Door mijn webapplicatie te optimaliseren, maak ik mijn webapplicatie ook toegankelijk voor mensen die een trage pc of laptop hebben. Daarnaast vind ik het erg belangrijk dat de gebruiker een goede gebruikerservaring heeft met mijn webapplicatie. Door de genoemde componenten te optimaliseren, heb ik de algehele gebruikerservaring van mijn webapplicatie verbeterd. Snellere laadtijden, responsieve interacties, visuele stabiliteit en vloeiende animaties dragen allemaal bij aan een prettige en gebruiksvriendelijke ervaring voor mijn gebruikers.
